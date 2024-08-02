@@ -5,11 +5,19 @@ const args = process.argv.slice(2);
 // Fetching user input as an array with each word as a separate element
 const rawUserInputArray = args;
 
-// Format each word to lower case letters into new array *ToDO* undo formatting, information of upper or lower case needed later
-let formattedUserInput = [];
-rawUserInputArray.forEach((element) => {
-  formattedUserInput.push(element.toLowerCase());
-});
+// Case: User input is a single string
+const rawUserInputString = args[0];
+
+const formattedUserInput= rawUserInputString.split(" ");
+console.log(formattedUserInput);
+
+
+// Old: in this way, the user input is thought to be a list of arguments with no ""-enclosure of the whole sentence
+// // Format each word to lower case letters into new array *ToDO* undo formatting, information of upper or lower case needed later
+// let formattedUserInput = [];
+// rawUserInputArray.forEach((element) => {
+//   formattedUserInput.push(element.toLowerCase());
+// });
 
 // matches vowel - case sensitive
 const regExVowel = /[aeiouy]/g;
@@ -64,5 +72,7 @@ let translateText = function () {
   });
   return textTranslated;
 };
-console.log(formattedUserInput);
+
+// console.log(formattedUserInput);
+
 return console.log(translateText());
