@@ -10,33 +10,12 @@ let formattedUserInput = [];
 rawUserInputArray.forEach((element) => {
   formattedUserInput.push(element.toLowerCase());
 });
-// console.log(formattedUserInput);
 
-// *toDO* Function that takes a string (word) as input and transforms it to pig latin
-let translatedWordToPigLatin = function (word) {
-  translatedWordToPigLatin = "";
-
-  switch (checkTypeOfWord(word)) {
-    case "consonantPlusVowel":
-      translatedWordToPigLatin = word.slice(1) + word.at(0) + "ay";
-      break;
-    case "consonantPlusConsonant":
-      translatedWordToPigLatin = word.slice(2) + word.slice(0, 2) + "ay";
-      break;
-    case "vowel":
-      translatedWordToPigLatin = word + "way";
-      break;
-    default:
-      console.log("Error during translation.");
-  }
-
-  return translatedWordToPigLatin;
-};
-
+// matches vowel - case sensitive
 const regExVowel = /[aeiouy]/g;
 
-// *toDo* Word Checker checks to which case the input word corresponds to
-let checkTypeOfWord = function (word) {
+// Word Checker checks to which case the input word corresponds to
+const checkTypeOfWord = function (word) {
   if (
     word.charAt(0).search(regExVowel) == -1 &&
     word.charAt(1).search(regExVowel) != -1
@@ -55,4 +34,35 @@ let checkTypeOfWord = function (word) {
   }
 };
 
-return console.log(translatedWordToPigLatin(formattedUserInput[0]));
+// Function that takes a string (word) as input and transforms it to pig latin
+// *ToDO: detect upper case letters and write the translated word in upper letters if the original start with one
+let translateWord = function (word) {
+  wordTranslated = "";
+
+  switch (checkTypeOfWord(word)) {
+    case "consonantPlusVowel":
+      wordTranslated = word.slice(1) + word.at(0) + "ay";
+      break;
+    case "consonantPlusConsonant":
+      wordTranslated = word.slice(2) + word.slice(0, 2) + "ay";
+      break;
+    case "vowel":
+      wordTranslated = word + "way";
+      break;
+    default:
+      console.log("Error during translation.");
+  }
+  return wordTranslated;
+};
+
+// Create translated user input by translating each word in formattedUserInput array
+let translateText = function () {
+  let textTranslated = "";
+
+  formattedUserInput.forEach((element) => {
+    textTranslated = textTranslated.concat(translateWord(element), " ");
+  });
+  return textTranslated;
+};
+console.log(formattedUserInput);
+return console.log(translateText());
