@@ -9,8 +9,6 @@ const rawUserInputArray = args;
 const rawUserInputString = args[0];
 
 const formattedUserInput= rawUserInputString.split(" ");
-console.log(formattedUserInput);
-
 
 // Old: in this way, the user input is thought to be a list of arguments with no ""-enclosure of the whole sentence
 // // Format each word to lower case letters into new array *ToDO* undo formatting, information of upper or lower case needed later
