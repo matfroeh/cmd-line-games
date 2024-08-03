@@ -2,19 +2,27 @@
 
 const args = process.argv.slice(2);
 
-// User input is supposed to be a single string argument
+// User input is supposed to be a single string as the first argument
 const rawUserInputString = args[0];
 const letterShift = parseInt(args[1]);
+
+// Print message if invalid second argument
+if (!letterShift) {
+  console.log("Please enter a number as second argument.");
+  return;
+}
 
 // Transform to all lower case letters and split word by word in array
 const wordArray = rawUserInputString.toLowerCase().split(" ");
 
-const letterArray = [..."abcdefghijklmnopqrstuvwxyz"];
-
 // Function taking a single word as first parameter shifting each letter by the number of the second parameter returning shifted word
-function shiftAllLetters(word, shift) {
+function getShiftedWord(word, shift) {
   let shiftedWord = "";
   let currentCharCode = -1;
+
+  // If user inputs a shift > |26|: stay at 0-26 range
+  if (shift > Math.abs(26)) shift %= 26;
+
   for (let i = 0; i < word.length; i++) {
     currentCharCode = word.charCodeAt(i);
 
@@ -30,14 +38,14 @@ function shiftAllLetters(word, shift) {
   return shiftedWord;
 }
 
-console.log(shiftAllLetters("xyz", -26));
+// Function calling the getShiftedWord function for each element in the array of words
+function getCipheredText(array, shift) {
+  let cipheredText = "";
+  array.forEach((element) => {
+    cipheredText += getShiftedWord(element, shift) + " ";
+  });
+  return cipheredText;
+}
 
-// console.log(letterArray[1 % letterArray.length]);
-// console.log(letterArray.indexOf("k"));
-
-// let text = "HELLO WORLD";
-// let char = text.charCodeAt(0);
-
-// let newChar = char + 3; // K
-// let newString = String.fromCharCode(char + 3);
-// console.log(newString);
+// User output
+console.log(getCipheredText(wordArray, letterShift));
