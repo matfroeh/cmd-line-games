@@ -15,6 +15,10 @@ const letterArray = [..."abcdefghijklmnopqrstuvwxyz"];
 function shiftAllLetters(word, shift) {
   let shiftedWord = "";
   let currentCharCode = -1;
+
+  // If user inputs a shift > |26|: stay at 0-26 range
+  if (shift > Math.abs(26)) shift %= 26;
+
   for (let i = 0; i < word.length; i++) {
     currentCharCode = word.charCodeAt(i);
 
@@ -30,14 +34,3 @@ function shiftAllLetters(word, shift) {
   return shiftedWord;
 }
 
-console.log(shiftAllLetters("xyz", -26));
-
-// console.log(letterArray[1 % letterArray.length]);
-// console.log(letterArray.indexOf("k"));
-
-// let text = "HELLO WORLD";
-// let char = text.charCodeAt(0);
-
-// let newChar = char + 3; // K
-// let newString = String.fromCharCode(char + 3);
-// console.log(newString);
