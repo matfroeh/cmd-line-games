@@ -2,17 +2,21 @@
 
 const args = process.argv.slice(2);
 
-// User input is supposed to be a single string argument
+// User input is supposed to be a single string as the first argument
 const rawUserInputString = args[0];
 const letterShift = parseInt(args[1]);
+
+// Print message if invalid second argument
+if (!letterShift) {
+  console.log("Please enter a number as second argument.");
+  return;
+}
 
 // Transform to all lower case letters and split word by word in array
 const wordArray = rawUserInputString.toLowerCase().split(" ");
 
-const letterArray = [..."abcdefghijklmnopqrstuvwxyz"];
-
 // Function taking a single word as first parameter shifting each letter by the number of the second parameter returning shifted word
-function shiftAllLetters(word, shift) {
+function getShiftedWord(word, shift) {
   let shiftedWord = "";
   let currentCharCode = -1;
 
@@ -34,3 +38,14 @@ function shiftAllLetters(word, shift) {
   return shiftedWord;
 }
 
+// Function calling the getShiftedWord function for each element in the array of words
+function getCipheredText(array, shift) {
+  let cipheredText = "";
+  array.forEach((element) => {
+    cipheredText += getShiftedWord(element, shift) + " ";
+  });
+  return cipheredText;
+}
+
+// User output
+console.log(getCipheredText(wordArray, letterShift));
