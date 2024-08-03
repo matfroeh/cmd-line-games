@@ -2,22 +2,11 @@
 
 const args = process.argv.slice(2);
 
-// Fetching user input as an array with each word as a separate element
-const rawUserInputArray = args;
-
-// Case: User input is a single string
+// User input is supposed to be a single string argument
 const rawUserInputString = args[0];
-
 const formattedUserInput = rawUserInputString.split(" ");
 
-// Old: in this way, the user input is thought to be a list of arguments with no ""-enclosure of the whole sentence
-// // Format each word to lower case letters into new array *ToDO* undo formatting, information of upper or lower case needed later
-// let formattedUserInput = [];
-// rawUserInputArray.forEach((element) => {
-//   formattedUserInput.push(element.toLowerCase());
-// });
-
-// matches vowel - case sensitive
+// Regular Expression matches vowel - case isensitive
 const regExVowel = /[aeiouy]/gi;
 
 // Word Checker checks to which case the input word corresponds to
@@ -41,7 +30,6 @@ const checkTypeOfWord = function (word) {
 };
 
 // Function that takes a string (word) as input and transforms it to pig latin
-// *ToDO: detect upper case letters and write the translated word in upper letters if the original start with one
 let translateWord = function (word) {
   wordTranslated = "";
 
@@ -65,7 +53,6 @@ let translateWord = function (word) {
     wordTranslated = wordTranslated.toLowerCase();
     wordTranslated = wordTranslated.at(0).toUpperCase() + wordTranslated.slice(1);
   }
-
   return wordTranslated;
 };
 
@@ -78,7 +65,5 @@ let translateText = function () {
   });
   return textTranslated;
 };
-
-// console.log(formattedUserInput);
 
 return console.log(translateText());
