@@ -12,7 +12,7 @@ if ( !( (userInput === "rock") || (userInput === "paper") || (userInput === "sci
 let rnd = Math.floor(Math.random() * 3);
 let computerChoice = "";
 
-// Asigning random number rnd to one of the possible choices
+// Assigning random number rnd to one of the possible choices
 switch (rnd) {
   case 0:
     computerChoice = "rock";
