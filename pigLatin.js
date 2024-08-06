@@ -7,7 +7,7 @@ const rawUserInputString = args[0];
 const formattedUserInput = rawUserInputString.split(" ");
 
 // Regular Expression matches vowel - case isensitive
-const regExVowel = /[aeiouy]/gi;
+const regExVowel = /[aeiou]/gi;
 
 // Word Checker checks to which case the input word corresponds to
 const checkTypeOfWord = function (word) {
